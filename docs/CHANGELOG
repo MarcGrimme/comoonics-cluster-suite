@@ -660,8 +660,11 @@ comoonics-ec-base-py:
    - initial revision
 
 comoonics-ec-py:
+<<<<<<< HEAD
 * Fri Aug 17 2012 MG <grimme( at )atix.de>, 5.1-1
   - Rebase for com.oonics 5.1
+=======
+>>>>>>> 04213f9... new versions.
 * Wed Aug 01 2012 MG <grimme( at )atix.de>, 5.0-3
   - Fixed bug in ComFilesystemCopyset (updateMetadata)
 * Fri Dec 09 2011 MG <grimme( at )atix.de>, 5.0-2
@@ -910,8 +913,11 @@ comoonics-storage-hp-py
   SSSU simulator for hp-eva-sssu (Storage scripting)
 
 comoonics-storage-py
+<<<<<<< HEAD
 * Fri Aug 17 2012 MG <grimme( at )atix.de>, 5.1-1
   - Rebase for com.oonics 5.1
+=======
+>>>>>>> 04213f9... new versions.
 * Wed Aug 01 2012 MG <grimme( at )atix.de>, 5.0-3
   - First offical functional release for GFS2 (ComFileSystem/gfs2FileSystem)
   - Redesign of use of parted (all parted deps go in ComParted). 
