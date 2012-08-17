@@ -1264,7 +1264,7 @@ com.oonics Backup utilities and libraries written in Python
     },    
     "comoonics-base-py": {
       "name":"comoonics-base-py",
-      "version": "5.0",
+      "version": "5.1",
       "description":"com.oonics minimum baselibraries",
       "long_description":""" 
 com.oonics minimum baselibraries written in Python
@@ -1287,7 +1287,7 @@ Those are classes used by more other packages.
     },
     "comoonics-cdsl-py": { 
       "name": "comoonics-cdsl-py",
-      "version": "5.0",
+      "version": "5.1",
       "description": "com.oonics cdsl utilities and library written in Python",
       "long_description": """ com.oonics cdsl utilities and library written in Python """,
 #      author="ATIX AG - Marc Grimme",
@@ -1300,7 +1300,7 @@ Those are classes used by more other packages.
     },
     "comoonics-cluster-tools-py": {
       "name":"comoonics-cluster-tools-py",
-      "version": "5.0",
+      "version": "5.1",
       "description":"com.oonics cluster tools",
       "long_description":""" 
 com.oonics cluster tools written in Python
@@ -1316,7 +1316,7 @@ Those are tools to help using OSR clusters.
     },
     "comoonics-cluster-py": {
       "name": "comoonics-cluster-py",
-      "version": "5.0",
+      "version": "5.1",
       "description":"com.oonics cluster configuration utilities written in Python",
       "long_description": """ com.oonics cluster configuration utilities written in Python """,
 #      author="ATIX AG - Marc Grimme",
@@ -1390,7 +1390,7 @@ com.oonics enterprise copy administrator written in Python
     },    
     "comoonics-ec-base-py": {
       "name":"comoonics-ec-base-py",
-      "version": "5.0",
+      "version": "5.1",
       "description":"com.oonics Enterprise Copy base libraries",
       "long_description":""" 
 com.oonics Enterprise Copy base libraries
@@ -1406,7 +1406,7 @@ Base libraries used for comoonics enterprise copy.
     },
     "comoonics-ec-py": {
       "name":"comoonics-ec-py",
-      "version": "5.0",
+      "version": "5.1",
       "description":"com.oonics Enterprisecopy utilities and libraries written in Python",
       "long_description":""" 
 com.oonics Enterprisecopy utilities and libraries written in Python
@@ -1418,7 +1418,7 @@ com.oonics Enterprisecopy utilities and libraries written in Python
     },    
     "comoonics-imsd-plugins-py": {
       "name":"comoonics-imsd-plugins-py",
-      "version": "5.0",
+      "version": "5.1",
       "description":"com.oonics imsd plugins written in Python",
       "long_description":""" 
 com.oonics imsd plugins written in Python
@@ -1429,7 +1429,7 @@ com.oonics imsd plugins written in Python
     },    
     "comoonics-imsd-py": {
       "name":"comoonics-imsd-py",
-      "version": "5.0",
+      "version": "5.1",
       "description":"com.oonics imsd utilities and libraries written in Python",
       "long_description":""" 
 com.oonics imsd utilities and libraries written in Python
@@ -1486,7 +1486,7 @@ com.oonics Enterprisecopy HP Storage utilities and libraries written in Python
     },    
     "comoonics-storage-py": {
       "name":"comoonics-storage-py",
-      "version": "5.0",
+      "version": "5.1",
       "description":"com.oonics Enterprisecopy Storage utilities and libraries written in Python",
       "long_description":""" 
 com.oonics Enterprisecopy Storage utilities and libraries written in Python
@@ -1497,7 +1497,7 @@ com.oonics Enterprisecopy Storage utilities and libraries written in Python
     },    
     "comoonics-tools-py": {
       "name":"comoonics-tools-py",
-      "version": "5.0",
+      "version": "5.1",
       "description":"com.oonics base tools",
       "long_description":""" 
 com.oonics basic tools written in Python
