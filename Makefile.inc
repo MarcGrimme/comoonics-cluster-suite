@@ -1,5 +1,5 @@
-COMOONICS_DISTRIBUTION=comoonics Enterprise IT Platform Release 5.0pre (Gumpn)
-VERSION=5.0
+COMOONICS_DISTRIBUTION=comoonics Enterprise IT Platform Release 5.0pre (Billabong)
+VERSION=5.1
 DISTDIR=dist
 
 PACKAGE_NAME=comoonics-*-py
@@ -8,7 +8,7 @@ PACKAGE_NAME=comoonics-*-py
 CHANNELBASEDIR=/atix/dist-mirrors
 DISTROS=rhel5 rhel6 sles10 fedora sles11
 PRODUCTNAME=comoonics
-PRODUCTVERSION=5.0
+PRODUCTVERSION=5.1
 CHANNELNAMES=preview:base addons:extras
 CHANNELDIR=$(CHANNELBASEDIR)/$(PRODUCTNAME)/$(PRODUCTVERSION)
 ARCHITECTURES=noarch SRPMS
