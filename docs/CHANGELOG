@@ -660,6 +660,8 @@ comoonics-ec-base-py:
    - initial revision
 
 comoonics-ec-py:
+* Thu May 16 2013 MG <grimme( at )atix.de>, 5.1-2
+  - Merged fix for additional xsltproc functionality in com-ec
 * Fri Aug 17 2012 MG <grimme( at )atix.de>, 5.1-1
   - Rebase for com.oonics 5.1
 * Wed Aug 01 2012 MG <grimme( at )atix.de>, 5.0-3
