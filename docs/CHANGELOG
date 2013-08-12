@@ -62,6 +62,9 @@ comoonics-backup-py:
    initial revision
   
 comoonics-base-py:
+* Mon Aug 12 2013 MG <grimme( at )atix.de>, 5.1-2
+  - fixed bugs in properties
+  - read from hash
 * Fri Aug 17 2012 MG <grimme( at )atix.de>, 5.1-1
   - Rebase for com.oonics 5.1
 * Wed Mar 07 2012 MG <grimme( at )atix.de>, 5.0-2
