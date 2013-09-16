@@ -62,6 +62,8 @@ comoonics-backup-py:
    initial revision
   
 comoonics-base-py:
+* Mon Sep 16 2013 MG <grimme( at )atix.de>, 5.1-4
+  - Fixed properties bug that they could also be constructed with one element as parameter.
 * Thu Aug 29 2013 MG <grimme( at )atix.de>, 5.1-3
   - Fixed bug in properties to str method.
 * Mon Aug 12 2013 MG <grimme( at )atix.de>, 5.1-2
@@ -665,6 +667,9 @@ comoonics-ec-base-py:
    - initial revision
 
 comoonics-ec-py:
+* Mon Sep 16 2013 MG <grimme( at )atix.de>, 5.1-4
+  - Converted tabs to spaces.
+  - Fixed ComSCSIRequirement to work with more recent systems.
 * Tue May 21 2013 MG <grimme( at )atix.de>, 5.1-3
   - Make PartionCopy, FilesystemCopy, LVMCopy more robust for Device Mapper devices and LVM devices. 
 * Thu May 16 2013 MG <grimme( at )atix.de>, 5.1-2
@@ -919,6 +924,9 @@ comoonics-storage-hp-py
   SSSU simulator for hp-eva-sssu (Storage scripting)
 
 comoonics-storage-py
+* Mon Sep 16 2013 MG <grimme( at )atix.de>, 5.1-5
+  - ComStorage: work with more recent XML python implementation
+  - ComFileSystem: gfs_tool command will be called from ComSystem.execLocalGetResult
 * Tue May 21 2013 MG <grimme( at )atix.de>, 5.1-4
   - Make Disk, LVM, Partition more robust concerning LVM and Devicemapper devices.
 * Tue Oct 09 2012 MG <grimme( at )atix.de>, 5.1-3
