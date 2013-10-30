@@ -17,6 +17,7 @@ from comoonics.ComExceptions import ComException
 from ComRequirement import Requirement
 from comoonics import ComLog
 from comoonics import ComSystem
+from comoonics.tools import stabilized
 
 class SCSIRequirementException(ComException): pass
 
@@ -79,8 +80,8 @@ class SCSIRequirement(Requirement):
          ComSCSI.rescan_qla(self.dest)
       else:
          raise SCSIRequirementException("Unsupported SCSI Rescan name %s", self.name)
-      #stabilized.stabilized(file="/proc/partitions", iterations=10, type="hash")
       ComSystem.execLocalOutput("udevsettle")
+      stabilized.stabilized(file="/proc/partitions", iterations=10, type="hash")
 
    def doPost(self):
       """

@@ -19,6 +19,7 @@ from comoonics.ComExceptions import ComException
 import os.path
 import re
 from comoonics import ComSystem
+import time
 
 log=ComLog.getLogger("comoonics.scsi.ComSCSI")
 
@@ -228,13 +229,17 @@ def scsi_remove_disk(host, disk_path):
    target=False
    if os.path.isdir(disk_path) and os.access(disk_path, os.W_OK):
       log.debug("scsi_remove_disk(%s/delete)" %(disk_path))
-      remove=open(disk_path+"/delete", "w")
-      print >> remove, SCSIDELETE_CMD
+      try: 
+         ComSystem.execLocalOutput("echo %s > %s" %(SCSIDELETE_CMD, disk_path+"/device/delete"))
+      except Exception, e:
+         log.debug("Error during scsi_remove_disk %s." %e)
+      #remove=open(disk_path+"/delete", "w")
+      #print >> remove, SCSIDELETE_CMD
       target=True
-      try:
-         remove.close()
-      except:
-         pass
+      #try:
+      #   remove.close()
+      #except:
+      #   pass
    else:
       raise SCSIException("sysfile for host %s does not exist or is not writable (%s)" %(host, disk_path))
    return target
@@ -261,7 +266,8 @@ def getWWWN(scsi_hostid, scsi_busid, scsi_id):
       nodename=nodenamef.readlines()[0]
       nodename=nodename[2:-1]
       nodenamef.close()
-   except IOError:
+   except IOError, e:
+      log.debug("Could not access scsi path %s trying old one.. Error: %s" %(filename, e))
       try:
          qlafile=QLA_SCSIPATH_PROC+"/%u" %(int(scsi_hostid))
          qla=open(qlafile, "r")
@@ -281,8 +287,8 @@ def getWWWN(scsi_hostid, scsi_busid, scsi_id):
                if wwpn and match and match.group(4)==wwpn:
                   nodename=match.group(3)
          qla.close()
-      except IOError:
-         raise SCSIException("Could not find or read/write either old or new scsipath. Is driver loaded?")
+      except IOError, e:
+         raise SCSIException("Could not find or read/write either old or new scsipath. Is driver loaded? Error %s" %e)
    if nodename and nodename != "":
       return nodename
    else:
@@ -307,7 +313,7 @@ def getBlockDeviceForUID(uid):
    else:
       raise SCSIException("Syspath %s does not exist. Old Linux or no Linux or no sys mounted??" %(SYSPATH_2_BLOCK))
 
-def getBlockDeviceForWWWNLun(wwwn, lun, hosts=None):
+def getBlockDeviceForWWWNLun(wwwn, lun, hosts=None, waittimeout=20):
    """ returns the scsidevicename of wwwn, lun combination searching on all hosts or the given ones. """
    blockdev_file=None
    if not hosts:
@@ -324,14 +330,17 @@ def getBlockDeviceForWWWNLun(wwwn, lun, hosts=None):
             match=re.match(SCSITARGET_PATTERN, device_file)
             if match:
                (scsi_hostid, scsi_busid, scsi_id)=match.groups()
-               _wwwn=getWWWN(scsi_hostid, scsi_busid, scsi_id)
-               log.debug("Found WWWN: %s==%s" %(_wwwn, wwwn))
-               if _wwwn==wwwn:
-                  blockdev_file=FCPATH_HOST_LUN %(host, int(scsi_hostid), int(scsi_busid), int(scsi_id), int(scsi_hostid), int(scsi_busid), int(scsi_id), int(scsi_hostid), int(scsi_busid), int(scsi_id), int(lun))
-                  for filename in os.listdir(blockdev_file):
-                     if filename.startswith("block:"):
-                        blockdev_file=os.path.join(blockdev_file, filename)
-                        break
+               try:
+                  _wwwn=getWWWN(scsi_hostid, scsi_busid, scsi_id)
+                  log.debug("Found WWWN: %s==%s" %(_wwwn, wwwn))
+                  if _wwwn==wwwn:
+                     blockdev_file=FCPATH_HOST_LUN %(host, int(scsi_hostid), int(scsi_busid), int(scsi_id), int(scsi_hostid), int(scsi_busid), int(scsi_id), int(scsi_hostid), int(scsi_busid), int(scsi_id), int(lun))
+                     for filename in os.listdir(blockdev_file):
+                        if filename.startswith("block:"):
+                           blockdev_file=os.path.join(blockdev_file, filename)
+                           break
+               except SCSIException, se:
+                  log.debug("Ignoring exception %s during getBlockDeviceForWWWNLun." %se)
       except IOError:
          hostid=getHostId(host)
          busid=0
@@ -358,7 +367,15 @@ def getBlockDeviceForWWWNLun(wwwn, lun, hosts=None):
 
    if blockdev_file and os.path.exists(blockdev_file):
       log.debug("blockdevfile: %s" %(blockdev_file))
+      blockdev_file=os.path.join("/dev", os.path.basename(os.readlink(blockdev_file)))
       if os.path.exists(blockdev_file):
-         return "/dev/"+os.path.basename(os.readlink(blockdev_file))
+         return blockdev_file
+      else:
+         log.debug("Blockdev file %s does not exists yet. Waiting for %s seconds for it to become available." %(blockdev_file, waittimeout))
+         time.sleep(waittimeout)
+         if os.path.exists(blockdev_file):
+            return blockdev_file
+         else:
+            raise SCSIException("Could not find blockdevice file %s. This is needed to continue. Bailing out." %blockdev_file)
    else:
       raise SCSIException("Could not find blockdevice for wwwn: %s, lun: %u" %(wwwn, int(lun)))
